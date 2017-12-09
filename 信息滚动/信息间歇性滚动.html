@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>信息间歇性滚动</title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+		#box{width:300px;height:50px;background:#ccc;margin:48px auto;overflow:hidden;}
+		#content{display:block;list-style:none;width:288px;height:48px;overflow:hidden;}
+		li{display:block;height:24px;line-height:24px;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<ul id="content">
+			<li>1.我将间歇性滚动</li>
+			<li>2.我将间歇性滚动</li>
+			<li>3.我将间歇性滚动</li>
+			<li>4.我将间歇性滚动</li>
+			<li>5.我将间歇性滚动</li>
+			<li>6.我将间歇性滚动</li>
+		</ul>
+	</div>
+
+	<script type="text/javascript">
+		var content = document.getElementById("content");
+		content.scrollTop=0;
+		var liH = 24;
+		var timer;
+		function move(){
+			if(content.scrollTop%liH == 0){
+				clearInterval(timer);
+				setTimeout(again,2000);
+			}else{
+				content.scrollTop++;
+				if(content.scrollTop>=content.scrollHeight/2){
+					content.scrollTop=0;
+				}	
+			}
+		}
+		function again(){
+			content.scrollTop++;
+			timer = setInterval(move,50);
+		}	
+		setTimeout(again,2000);
+	</script>
+</body>
+</html>

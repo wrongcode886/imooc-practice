@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>信息无限滚动</title>
+	<style type="text/css" media="screen">
+		*{padding:0;margin:0;}
+		#box{width:300px;height:180px;border:2px solid #ccc;margin:50px auto;}
+		h2{text-align:center;background:rgba(0,0,0,0.1);padding-bottom:5px}
+		#content{width:290px;height:125px;margin:10px;overflow:hidden}
+		#con1{list-style:none;}
+	</style>
+</head>
+<body>
+	<div id="box">
+		<h2>信息滚动</h2>
+		<hr>
+		<div id="content">
+			<ul id="con1">
+				<li>1.我要滚动了</li>
+				<li>2.我要滚动了</li>
+				<li>3.我要滚动了</li>
+				<li>4.我要滚动了</li>
+				<li>5.我要滚动了</li>
+				<li>6.我要滚动了</li>
+		
+			</ul>
+		</div>
+	</div>
+
+
+	<script type="text/javascript">
+		window.onload=function(){
+			var content = document.getElementById("content");
+			var con1 =document.getElementById("con1");
+			var con2 = document.createElement('ul');
+			content.scrollTop=0;
+			con2.innerHTML=con1.innerHTML;
+			content.appendChild(con2);
+			function move(){
+				if(content.scrollTop>=con1.scrollHeight){
+					content.scrollTop=0;
+				}else{
+					content.scrollTop++;
+				}
+			}
+		
+			var timer = setInterval(move,50);
+			content.onmouseover=function(){
+				clearInterval(timer);
+			}
+
+			content.onmouseout=function(){
+				timer = setInterval(move,50);
+			}
+		}
+		
+	</script>
+</body>
+</html>
