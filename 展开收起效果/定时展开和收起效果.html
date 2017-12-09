@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>展开和收起效果</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+		*{
+			margin: 0;
+			padding:0;
+		}
+		.container{
+			width: 500px;
+			margin: 0 auto;
+			text-align: center;
+			
+		}
+		#big{
+			height: auto;
+			background: rgba(0, 0, 0, 0.2);
+			transition: display 2s ease-in 2s;
+		}
+		#small{
+			height: 80px;
+			background: rgba(0, 0, 0, 0.4);
+			line-height: 80px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div id="big">
+			<h1>欢迎来到windows</h1>
+			<h2>大幅广告</h2>
+		</div>
+		<div id="small">
+			<p>windows欢迎你</p>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		var h=0;
+		function addH(){
+			if(h<300){
+				h+=5;
+				document.getElementById('big').style.height=h+"px";
+			}else{
+				return;
+			}
+			setTimeout("addH()",30);
+		}
+		window.onload=function(){
+			addH();
+			setTimeout("subH()",3000)
+		}
+		function subH(){
+			if(h > 0){
+				h -= 5;
+				document.getElementById('big').style.height=h+"px";			
+			}else{
+				document.getElementById('big').style.display="none";
+			}
+			
+			setTimeout("subH()",30);
+		}
+
+	</script>
+</body>
+</html>

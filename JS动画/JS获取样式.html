@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS获取样式</title>
+	<style type="text/css" media="screen">
+		#box{width:200px;height:100px;background:red;border:4px solid #ccc;}
+	</style>
+</head>
+<body>
+	<div id="box"></div>
+	
+
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = document.getElementById("box");
+			box.onmouseover = function(){
+				startMove(0);
+			}
+			box.onmouseout = function(){
+				startMove(200)
+			}
+		}
+
+		var timer = null;
+		function startMove(iTarget){
+			var box = document.getElementById("box");
+			var speed = 0; 
+			clearInterval(timer);
+			timer = setInterval(function(){
+				if(iTarget>parseInt(getStyle(box,'width'))){
+					speed =2;
+				}else{
+					speed =-2;
+				}
+				if(iTarget == parseInt(getStyle(box,'width'))){
+					clearInterval(timer);
+				}else{
+					box.style.width = parseInt(getStyle(box,'width')) +speed +"px";
+				}
+			},30)
+		}
+
+		function getStyle(obj,attr){
+			if(obj.currentStyle){
+				return obj.currentStyle[attr];
+			}else{
+				return getComputedStyle(obj,false)[attr];
+			}
+		}
+	</script>
+</body>
+</html>

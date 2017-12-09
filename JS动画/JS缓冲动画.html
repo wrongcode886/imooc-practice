@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS速度动画</title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+		#btn{width:30px;height:50px;background:blue;position:absolute;top:75px; left:200px;}
+		#content{width:200px;height:200px;background:gray;position:relative;top:100px;left:-200px;text-align: center;line-height: 200px}
+	</style>
+</head>
+<body>
+	<div id="content">
+		<div id="btn"></div>
+		看啥，傻吊，
+	</div>
+
+
+
+	<script type="text/javascript">
+		window.onload = function(){
+			var btn = document.getElementById("btn");
+			btn.onmouseover = function(){
+				startMove(0);
+			}
+			btn.onmouseout = function(){
+				startMove(-200)
+			}
+		}
+
+		var timer = null;
+		function startMove(itarget){
+			clearInterval(timer);
+			var content = document.getElementById("content");
+			
+			timer = setInterval(function(){
+				var speed = (itarget-content.offsetLeft)/10;
+				speed = speed>0? Math.ceil(speed):Math.floor(speed);
+				if(content.offsetLeft == itarget ){
+					clearInterval(timer);
+				}else{
+					content.style.left = content.offsetLeft + speed+"px";
+			    }
+
+			},30)
+		}
+	</script>
+</body>
+</html>

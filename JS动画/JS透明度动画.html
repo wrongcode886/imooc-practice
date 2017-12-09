@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS透明度动画</title>
+	<style type="text/css" media="screen">
+		*{margin:0;padding:0;}
+		#box{width:200px;height:200px;background:pink;margin:20px auto;filter: alpha(opacity: 30);opacity:0.3;}
+	</style>
+</head>
+<body>
+	<div id="box">
+	
+	</div>
+
+
+
+	<script type="text/javascript">
+		window.onload = function(){
+			var box = document.getElementById("box");
+			box.onmouseover = function(){
+				startMove(100);
+			}
+			box.onmouseout = function(){
+				startMove(30)
+			}
+		}
+
+		var timer = null;
+		var alpha=30;
+		function startMove(iTarget){
+			clearInterval(timer);
+			var speed=0;
+			var box = document.getElementById("box");
+			timer = setInterval(function(){
+				if(alpha>iTarget){
+					speed=-10;
+				}else{
+					speed=10;
+				}
+				if(alpha==iTarget){
+					clearInterval(timer);
+				}else{
+					alpha+=speed;
+					 box.style.filter="alpha(opacity:"+alpha+")";
+					 box.style.opacity=alpha/100;
+			    }
+
+			},30)
+		}
+	</script>
+</body>
+</html>

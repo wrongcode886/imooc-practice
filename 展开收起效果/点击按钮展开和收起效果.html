@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>展开和收起效果</title>
+	<link rel="stylesheet" href="">
+	<style type="text/css" media="screen">
+	.container{
+		width: 300px;
+		border: 1px solid #000;
+		background: #ccc;
+		margin: 0 auto;
+		text-align: center;
+	}	
+	.hidden{
+		display: none;
+	}
+	a{
+		display: block;
+		width: 80px;
+		height: 40px;
+		margin: 0 auto;
+		background: #ccc;
+		text-decoration: none;
+		line-height: 40px;
+		text-align: center;
+		color: #000;
+	}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<p>我会被展开</p>
+		<p>我会被展开</p>
+		<p>我会被展开</p>
+		<div id="hi" class="hidden">
+			<p>我会被隐藏</p>
+			<p>我会被隐藏</p>
+		</div>
+	</div>
+	<a id="button"  href="javascript:show();">更多选项</a>
+
+
+	<script type="text/javascript">
+		function show(){
+			document.getElementById("hi").style.display="block";
+			document.getElementById("button").innerHTML="收起选项";
+			document.getElementById("button").href="javascript:hidden()";
+
+		}
+		function hidden(){
+			document.getElementById("hi").style.display="none";
+			document.getElementById("button").innerHTML="更多选项";
+			document.getElementById("button").href="javascript:show()";
+		}
+	</script>
+</body>
+</html>

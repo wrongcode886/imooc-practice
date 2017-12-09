@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>JS多物体运动</title>
+	<style type="text/css" media="screen">
+		ul{list-style:none;}
+		li{width:200px;height:100px;background:yellow;margin-bottom:20px;}
+	</style>
+</head>
+<body>
+	<ul>
+		<li></li>
+		<li></li>
+		<li></li>
+	</ul>
+
+
+	<script type="text/javascript">
+		window.onload=function(){
+			var li = document.getElementsByTagName("li");
+			for(var i=0; i<li.length;i++){
+				li[i].timer = null;
+				li[i].onmouseover=function(){
+					startMove(this,400);
+				}
+				li[i].onmouseout=function(){
+					startMove(this,200);
+				}
+			}
+		}
+
+		//var timer = null;
+		function startMove(obj,iTarget){
+			clearInterval(obj.timer);
+			obj.timer = setInterval(function(){
+				var speed = (iTarget-obj.offsetWidth)/20;
+				speed = speed>0? Math.ceil(speed):Math.floor(speed);
+				if(iTarget == obj.offsetWidth){
+					clearInterval(obj.timer);
+				}else{
+					obj.style.width = obj.offsetWidth + speed + "px";
+				}
+
+			},30)
+		}
+	</script>
+</body>
+</html>
